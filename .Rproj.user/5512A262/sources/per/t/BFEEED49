@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1553615135668.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1993881649",
+    "id" : "BFEEED49",
+    "lastKnownWriteTime" : 1553619050,
+    "last_content_update" : 1553619050419,
+    "path" : "C:/Users/DMKAMAU/Desktop/data science/R/dplyr/CreatePayrollTable.R",
+    "project_path" : "CreatePayrollTable.R",
+    "properties" : {
+        "cursorPosition" : "1,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

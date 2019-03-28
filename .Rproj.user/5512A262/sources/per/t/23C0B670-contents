@@ -1,0 +1,180 @@
+#class practice exercise - based on Wednesday March 20th class
+
+#creating a dataframe - a dataframe is single table with rows and columns - you did this in class. Please use this exercise for practice.
+#note R is case sensitive
+
+#dataframes provide a spreadsheet like look. when analyzing data in R after loading, its much easier with the help of a dataframe structure, it is very ideal with structured data.
+#here we start by creating individual vectors, which we then combine to make a dataframe
+product <- c("bag", "shoes","belt","belt")
+total_price <- c(500, 1000,150,200)
+color <- c("blue","red","red","blue")
+quantity <- c(5,2,3,4)
+
+
+productdetails <- data.frame(product, total_price, color, quantity) #creates a dataframe based on the vectors created - that we specify
+
+library(dplyr)
+productdetails
+plot(productdetails %>%  select(product,total_price))
+#find out the class
+
+class(productdetails)
+
+#traverse the data frame --> df[i,j] - here i represents rows, and j represents columns
+
+productdetails[,2] #this extracts the second column
+productdetails[2,] #this extracts the second row
+productdetails[2,2] #extracts the second row and column
+
+productdetails$product #we can also use the dollar sign $ to precisely pinpoint that we want all the data relating to the vector, product.
+
+#lets explore a data set
+
+#we will use an existing dataset loaded when we load R
+
+library(datasets)
+data() #this shows us all the datasets loaded into our workspace belonging to the datasets that are in R naturally.
+
+#lets load the iris dataset
+#we will load it into our own dataset which we will call iris2
+data(iris)
+iris2<-data.frame(iris)
+?iris #tells you more about this dataset
+
+#find out the column names in the iris2 dataset
+
+names(iris2)
+colnames(iris2) #these two functions show the same output, which are the column names of our dataset
+
+#lets find out the total number of rows and columns
+
+dim(iris2) #the output is (rows are shown, then columns)
+
+#lets find out what else "dim" fucntion does by using the help function
+
+?dim
+
+nrow(iris2)# number of rows
+ncol(iris2) #number of columns
+
+head(iris2) #head returns the first parts of a vector, matrix, table or data frame
+?head
+head(iris2, 10) #returns exactly the first 10 values in the dataset
+
+tail(iris2) #tail returns the last parts of a vector, matrix, table or data frame
+
+#how do we find out the structure of the dataset
+
+str(iris2)
+?str
+?length
+length(iris2)
+
+#you can also view the summary of the dataset
+
+summary(iris2)
+?summary
+
+#what else can we do?
+
+class(iris2) #we can see its a dataframe
+
+#so lets say we didnt want to load the data as a separate dataset (lets say with a different name), you can choose to just attach this dataset into our working environment?
+
+attach(iris)
+ls()
+?ls #the names of the objects in the specified environment
+
+#lets display the top numbers in the Species column
+
+head(Species)
+is.na(iris) #shows you the total number of missing values in the dataset, in TRUE or FALSE (here, FALSE means there is NO missing value, while TRUE means that value is missing)
+?is.na
+which(is.na(iris$Species)) #confirms to us that the dataset does not have any missing data in rows and columns (integer 0)
+?which
+#the which() is very useful - please read its help file / documentation, or can google and can see how its used in other cases
+
+#lets see how to seq to generate a new dataset
+
+?seq
+#lets generate a dataset of 1970 til 2000. lets call the object we create "sequence"
+
+sequence <- seq(1970, 2000)
+sequence 
+str(sequence)
+
+class(sequence) #why is the class type sequence?
+#lets be a little fancy and be more descriptive, by creating
+sequence_by <- seq(from=1, to=5, by=0.5) #here we choose what we want to increment our dataset with, please read the help file on how to use seq
+sequence_by
+
+#quick task 
+#please create your own dataset, where the sequence of data is from 1 to 5000, with increments of 0.6. please store these in a different object, as a dataframe.
+
+#to detach
+detach(iris)
+ls()
+
+#finding out how to check your working directory
+getwd()
+
+#how to remove values in your working environment
+ls()
+
+#lets remove the color object
+rm(color)
+ls() #you can see its has been removed / deleted from the environment
+
+#if you would like to clear your console, use ctrl + L on your keyboard
+
+
+#packages
+
+#R packages are collections of functions and data sets developed by the community. 
+#They increase the power of R by improving existing base R functionalities, or by adding new ones. 
+#For example, if you are usually working with data frames, probably you will have heard about dplyr or data.table, 
+#two of the most popular R packages.
+
+#Let’s start with some definitions. 
+#A package is a suitable way to organize your own work and, if you want to, share it with others. 
+#Typically, a package will include code (not only R code!), documentation for the package and for the functions inside, some tests to check everything works as it should, and data sets.
+
+
+#Packages are collections of R functions, data, and compiled code in a well-defined format. The directory where packages are stored is called the library. R comes with a standard set of packages. Others are available for download and installation. Once installed, they have to be loaded into the session to be used.
+
+#Installing Packages From CRAN
+#How you can install a package will depend on where it is located. So, for publicly available packages, this means to what repository it belongs. The most common way is to use the CRAN repository, then you just need the name of the package and use the command install.packages("package").
+
+#For example, the oldest package published in CRAN and still online and being updated is the vioplot package, from Daniel Adler.
+
+#Can you find what was its date of publication? Clue: Is in the package description ;).
+
+#To install it from CRAN (read about CRAN when you can), you will need just to use:
+
+install.packages("vioplot")
+
+?install.packages
+
+#to find out what packages are pre-installed in R
+
+
+.libPaths() # get library location of where they are pre-installed
+library()   # see all packages installed 
+installed.packages() # you can also use this to find out the packages installed
+search()    # see packages currently loaded
+
+#Uninstalling a package is straightforward with the function remove.packages()
+
+remove.packages("vioplot")
+
+#You can update all packages by using: update.packages()
+
+update.packages()
+
+#If you prefer a graphical user interface (that is, pointing and clicking) to install packages, both RStudio and the RGui include them. In RStudio you will find it at Tools -> Install Package, and there you will get a pop-up window to type the package you want to install:
+
+
+#note, library() is the command used to load a package, and it refers to the place where the package is contained, usually a folder on your computer, while a package is the collection of functions bundled conveniently.
+
+#please find out how to load more than one package at once
+
